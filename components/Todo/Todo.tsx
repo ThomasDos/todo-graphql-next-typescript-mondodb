@@ -6,7 +6,14 @@ import { Form } from 'react-bootstrap'
 import { ITodo } from '../../interfaces/ITodo'
 import { GET_TODOS, UPDATE_TODO } from '../../services/graphql'
 import { ModalDeleteTodo } from '..'
-import { ContentContainer, TodoContainer, TodoIcon, TopicContainer } from './Todo.styled'
+import {
+  ContentContainer,
+  SwitchAndButtonsContainer,
+  TodoContainer,
+  TodoIcon,
+  TopicContainer,
+  TopicContentContainer
+} from './Todo.styled'
 import { WrapperCursor, ModalUpdateTodo } from '../'
 
 const Todo = (todo: ITodo) => {
@@ -16,35 +23,43 @@ const Todo = (todo: ITodo) => {
   const [showUpdateModal, setShowUpdateModal] = useState(false)
   const { refetch: refetchTodos } = useQuery(GET_TODOS)
   return (
-    <TodoContainer>
-      <div>
-        <TopicContainer>
-          <TodoIcon done={done} />
-          <span className='text-capitalize'>{topic}</span>
-        </TopicContainer>
-        <ContentContainer>{content}</ContentContainer>
-      </div>
-      <div className='d-flex align-items-center'>
-        <Form
-          onChange={(e: any) => {
-            updateTodo({ variables: { id, done: e.target.checked } })
-          }}
-        >
-          <Form.Check
-            checked={done}
-            type='switch'
-            id='done-todo-switch'
-            color='secondary'
-            label={done ? 'Good job !' : 'Please check this switch to end the task'}
-          />
-        </Form>
-        <WrapperCursor onClick={() => setShowDeleteModal(true)}>
-          <Icon path={mdiDelete} style={{ color: 'red' }} size={1.5} className='mx-2' />
-        </WrapperCursor>
-        <WrapperCursor onClick={() => setShowUpdateModal(true)}>
-          <Icon path={mdiCircleEditOutline} style={{ color: 'grey' }} size={1.5} className='mx-2' />
-        </WrapperCursor>
-      </div>
+    <>
+      <TodoContainer>
+        <TopicContentContainer>
+          <TopicContainer>
+            <TodoIcon done={done} />
+            <span className='text-capitalize'>{topic}</span>
+          </TopicContainer>
+          <ContentContainer>{content}</ContentContainer>
+        </TopicContentContainer>
+        <SwitchAndButtonsContainer>
+          <Form
+            onChange={(e: any) => {
+              updateTodo({ variables: { id, done: e.target.checked } })
+            }}
+            className='d-flex'
+          >
+            <Form.Label className='px-2 m-auto'>
+              {done ? 'Good job !' : 'Please check this switch to end the task'}
+            </Form.Label>
+            <Form.Check
+              className='d-flex align-items-center'
+              checked={done}
+              type='switch'
+              id='done-todo-switch'
+              color='secondary'
+            />
+          </Form>
+          <>
+            <WrapperCursor onClick={() => setShowDeleteModal(true)}>
+              <Icon path={mdiDelete} style={{ color: 'red' }} size={1} className='mx-2' />
+            </WrapperCursor>
+            <WrapperCursor onClick={() => setShowUpdateModal(true)}>
+              <Icon path={mdiCircleEditOutline} style={{ color: 'grey' }} size={1} className='mx-2' />
+            </WrapperCursor>
+          </>
+        </SwitchAndButtonsContainer>
+      </TodoContainer>
       <ModalDeleteTodo
         refetchTodos={refetchTodos}
         todo={todo}
@@ -57,7 +72,7 @@ const Todo = (todo: ITodo) => {
         showUpdateModal={showUpdateModal}
         setShowUpdateModal={setShowUpdateModal}
       />
-    </TodoContainer>
+    </>
   )
 }
 
