@@ -16,7 +16,7 @@ import {
   SectionTitle,
   SectionTitleContainer,
   SpanButton
-} from './index.styled'
+} from '../components/Home/Home.styled'
 
 const Home: NextPage = () => {
   const [showTodoModal, setShowTodoModal] = useState<boolean>(false)
