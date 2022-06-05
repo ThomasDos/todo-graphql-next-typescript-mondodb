@@ -21,6 +21,8 @@ const CustomInput = ({ title, id, handleChange, defaultValue = '' }: ICustomInpu
         onChange={handleChange}
         defaultValue={defaultValue as string}
         placeholder={title}
+        required
+        maxLength={title === 'Topic' ? 30 : 80}
       />
     </CustomInputContainer>
   )

@@ -14,6 +14,7 @@ import {
   HomeContainer,
   SectionsContainer,
   SectionTitle,
+  SectionTitleContainer,
   SpanButton
 } from './index.styled'
 
@@ -31,24 +32,24 @@ const Home: NextPage = () => {
       </Head>
       <Container className='d-flex flex-column align-items-center px-4'>
         {loadingTodos ? (
-          <div className='spinner-border text-info m-5' role='status' />
+          <div className='spinner-border text-secondary m-5' role='status' />
         ) : (
           <>
             <>
               {todos?.getTodos.length ? (
                 <SectionsContainer>
-                  <div className='w-100'>
+                  <SectionTitleContainer>
                     <SectionTitle>TO DO</SectionTitle>
-                  </div>
+                  </SectionTitleContainer>
 
                   {todos.getTodos
                     .filter((todo: ITodo) => !todo.done)
                     .map((todo: ITodo) => {
                       return <Todo key={todo.id} {...todo} />
                     })}
-                  <div className='w-100'>
+                  <SectionTitleContainer>
                     <SectionTitle>DONE</SectionTitle>
-                  </div>
+                  </SectionTitleContainer>
                   {todos.getTodos
                     .filter((todo: ITodo) => todo.done)
                     .map((todo: ITodo) => {

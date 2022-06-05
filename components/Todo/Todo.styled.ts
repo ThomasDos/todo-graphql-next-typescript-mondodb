@@ -8,6 +8,8 @@ export const TodoContainer = styled.div`
   align-items: center;
   background: #fffdfd;
   margin: 1rem 2rem;
+  border-radius: 5px;
+  box-shadow: -1px 4px 15px -2px rgba(0, 0, 0, 0.2);
 `
 
 export const TopicContainer = styled.span`

@@ -4,6 +4,7 @@ import { Button, Modal } from 'react-bootstrap'
 import { ITodo } from '../../interfaces/ITodo'
 import { UPDATE_TODO } from '../../services/graphql'
 import CustomInput from '../CustomInput/CustomInput'
+import { ErrorMessage } from './ModalUpdateTodo.styled'
 
 interface IModalUpdateTodoProps {
   todo: ITodo
@@ -46,7 +47,7 @@ const ModalUpdateTodo = ({ todo, showUpdateModal, setShowUpdateModal, refetchTod
           <CustomInput title='Topic' id='topic' handleChange={handleChange} defaultValue={currentTodo.topic} />
           <CustomInput title='Content' id='content' handleChange={handleChange} defaultValue={currentTodo.content} />
         </div>
-        {errorMessage && <span style={{ color: 'red' }}>{errorMessage}</span>}
+        {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       </Modal.Body>
       <Modal.Footer className='d-flex justify-content-center'>
         <Button variant='success' className='px-4 w-100 fs-4' onClick={handleSubmit} disabled={loadingDeleteTodo}>

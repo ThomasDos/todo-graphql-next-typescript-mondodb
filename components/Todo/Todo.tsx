@@ -34,8 +34,8 @@ const Todo = (todo: ITodo) => {
             checked={done}
             type='switch'
             id='done-todo-switch'
-            color='green'
-            label={done ? 'Task is done' : 'Task is not done yet'}
+            color='secondary'
+            label={done ? 'Good job !' : 'Please check this switch to end the task'}
           />
         </Form>
         <WrapperCursor onClick={() => setShowDeleteModal(true)}>

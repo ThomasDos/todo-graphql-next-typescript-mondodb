@@ -12,58 +12,76 @@ type Todo {
   done: Boolean
 }
 
-  type Query {
+type Query {
     getTodo(id: ID!): Todo
     getTodos: [Todo]
-  }
+}
 
-  type Mutation {
+type Mutation {
     createTodo(topic: String, content: String): Todo!
     updateTodo(id: String!, topic: String, content: String, done: Boolean): Todo
     deleteTodo(id: String!): Boolean
     deleteTodos: Boolean
-  }
+}
 `
 
 const resolvers: Resolvers = {
   Query: {
     async getTodos() {
-      const todos = await Todo.find()
-      return todos ?? []
+      try {
+        const todos = await Todo.find()
+        return todos ?? []
+      } catch (error) {
+        return { error: 'message' }
+      }
     },
     async getTodo(_, { id }) {
-      const todo = await Todo.findById(id)
-      return todo
+      try {
+        const todo = await Todo.findById(id)
+        return todo
+      } catch (error) {
+        return { error: 'error occured to find the todo' }
+      }
     }
   },
   Mutation: {
     async createTodo(_, args) {
       const { topic, content } = args
-      if (!topic || !content) return { error: 'Missing data' }
+      if (!topic || !content) return { error: 'Payload is missing data' }
       const todo = new Todo({ topic, content })
       try {
         await todo.save()
         return todo
       } catch (error) {
-        return error
+        return { error: 'error occured to create the todo' }
       }
     },
     async updateTodo(_, args) {
       const { id, ...fieldsToUpdate } = args
-
-      const todo = await Todo.findOneAndUpdate({ _id: id }, fieldsToUpdate, {
-        new: true
-      })
-
-      return todo
+      try {
+        const todo = await Todo.findOneAndUpdate({ _id: id }, fieldsToUpdate, {
+          new: true
+        })
+        return todo
+      } catch (error) {
+        return { error: 'error occured to update the todo' }
+      }
     },
     async deleteTodo(_, { id }) {
-      const todoDeleted = await Todo.findOneAndDelete({ _id: id })
-      return !!todoDeleted
+      try {
+        const todoDeleted = await Todo.findOneAndDelete({ _id: id })
+        return !!todoDeleted
+      } catch (error) {
+        return { error: 'error occured to delete the todo' }
+      }
     },
     async deleteTodos() {
-      const todosDeleted = await Todo.deleteMany()
-      return !!todosDeleted
+      try {
+        const todosDeleted = await Todo.deleteMany()
+        return !!todosDeleted
+      } catch (error) {
+        return { error: 'error occured to delete the todo' }
+      }
     }
   }
 }

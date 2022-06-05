@@ -32,7 +32,7 @@ export const ButtonsContainer = styled.div`
   display: flex;
   justify-content: center;
   position: fixed;
-  bottom: 5rem;
+  bottom: 2rem;
 `
 
 export const SpanButton = styled.span`
@@ -43,4 +43,8 @@ export const EmptyListTitle = styled.div`
   align-items: center;
   font-size: 2rem;
   height: 100vh;
+`
+
+export const SectionTitleContainer = styled.div`
+  width: 100%;
 `

@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction, useState } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import { CREATE_TODO } from '../../services/graphql'
 import { CustomInput } from '..'
+import { ErrorMessage } from './ModalCreateTodo.styled'
 
 interface IModalNewTodoProps {
   showTodoModal: boolean
@@ -44,7 +45,7 @@ const ModalCreateTodo = ({ showTodoModal, setShowTodoModal, refetchTodos }: IMod
           <CustomInput title='Topic' id='topic' handleChange={handleChange} />
           <CustomInput title='Content' id='content' handleChange={handleChange} />
         </div>
-        {errorMessage && <span style={{ color: 'red' }}>{errorMessage}</span>}
+        {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       </Modal.Body>
       <Modal.Footer className='d-flex justify-content-center'>
         <Button variant='success' className='px-4 w-100 fs-4' onClick={handleSubmit} disabled={loadingCreateTodo}>
