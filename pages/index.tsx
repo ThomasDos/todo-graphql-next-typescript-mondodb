@@ -65,16 +65,16 @@ const Home: NextPage = () => {
                 onClick={() => setShowTodoModal(true)}
                 className='d-flex align-items-center justify-content-center'
               >
-                <Icon path={mdiPlusCircle} size={1.5} className='mx-2' />
-                <SpanButton>Add a new task</SpanButton>
+                <Icon path={mdiPlusCircle} size={1.2} />
+                <SpanButton>New task</SpanButton>
               </Button>
               {todos?.getTodos.length ? (
                 <Button
                   variant='danger'
                   onClick={() => deleteTodos().then(refetchTodos)}
-                  className='ms-4 d-flex align-items-center justify-content-center mt-2 mt-md-0'
+                  className=' d-flex align-items-center justify-content-center mt-2 mt-md-0 ms-md-2'
                 >
-                  <Icon path={mdiDeleteCircle} size={1.5} className='mx-2' />
+                  <Icon path={mdiDeleteCircle} size={1.2} />
 
                   <SpanButton>Delete All</SpanButton>
                 </Button>

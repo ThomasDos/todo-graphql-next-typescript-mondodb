@@ -4,6 +4,7 @@ export const HomeContainer = styled.div`
   background: #e6dcfe;
   min-height: 100vh;
   height: 100%;
+  padding-bottom: 5rem;
 `
 
 export const SectionsContainer = styled.div`
@@ -36,7 +37,8 @@ export const ButtonsContainer = styled.div`
 `
 
 export const SpanButton = styled.span`
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  margin-left: 0.3rem;
 `
 export const EmptyListTitle = styled.div`
   display: flex;

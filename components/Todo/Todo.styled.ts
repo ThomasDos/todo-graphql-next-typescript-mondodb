@@ -38,9 +38,9 @@ interface ITodoIconProps {
 }
 
 export const TodoIcon = styled.span<ITodoIconProps>`
-  width: 20px;
+  width: 1rem;
+  height: 1rem;
   margin-right: 0.6rem;
-  height: 20px;
   border: none;
   border-radius: 100%;
   background: ${(props) => (props.done ? 'green' : 'red')};

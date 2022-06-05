@@ -39,9 +39,7 @@ const Todo = (todo: ITodo) => {
             }}
             className='d-flex'
           >
-            <Form.Label className='px-2 m-auto'>
-              {done ? 'Good job !' : 'Please check this switch to end the task'}
-            </Form.Label>
+            <Form.Label className='px-2 m-auto'>{done ? 'Good job !' : 'Switch to end'}</Form.Label>
             <Form.Check
               className='d-flex align-items-center'
               checked={done}
